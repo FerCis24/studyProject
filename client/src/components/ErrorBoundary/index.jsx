@@ -18,7 +18,7 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      // Puedes renderizar cualquier UI alternativa
+      // Tambien podría renderizar cualquier UI alternativa
       return <h1>Something went wrong.</h1>;
     }
 

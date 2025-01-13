@@ -26,7 +26,8 @@ export const ListProduct = () => {
           productos.map((producto, index) => (
             <CardProduct 
               key={index}
-              name={producto.name}
+              title={producto.title}
+              image={producto.image}
               description={producto.description}
               price={producto.price}
             />

@@ -69,11 +69,11 @@ const deleteProductById = (req, res) => {
 
 const updateProduct = (req, res) => {
   const { id } = req.params;
-  const { title, price, description, categoryId } = req.body
+  const { title, price, description, categoryId, image } = req.body
 
   connection.query(
-    "UPDATE productos SET title = ?, price = ?, description = ?, categoryId = ? WHERE id = ? LIMIT 1",
-    [title, price, description, categoryId, id],
+    "UPDATE productos SET title = ?, price = ?, description = ?, categoryId = ?, image = ? WHERE id = ? LIMIT 1",
+    [title, price, description, categoryId, image, id],
     (err, rows, fields) => {
       if (err) {
         console.error(err);
