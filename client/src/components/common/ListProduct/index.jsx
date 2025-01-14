@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CardProduct } from "../CardProduct";
 import ErrorBoundary from "../../ErrorBoundary";
-
+//PARA HACERLO CON "antd", VER → CLASE 51 → h:m = 1:15
 export const ListProduct = () => {
   const [productos, setProductos] = useState([]);
 

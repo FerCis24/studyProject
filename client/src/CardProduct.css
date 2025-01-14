@@ -1,0 +1,28 @@
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(219, 218, 223);
+    border-radius: 10px;
+    margin: 20px;
+    padding: 15px;
+
+    
+    button {
+      margin: 10px;
+      padding: 5px;
+      border-radius: 5px;
+      
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+.icons {
+  display: flex;
+  flex-direction: row;
+  .icon-with-text {
+    margin-inline: 10px;
+  }
+}

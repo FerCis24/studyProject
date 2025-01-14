@@ -10,3 +10,10 @@ https://ant.design/components/layout
 In the Front (React) → 
     npm i antd +[E]
     import { Layout } from "antd";
+
+GIT
+→ git add .
+→ git commit -m "mi mensaje"
+→ git push 
+
+→ git status

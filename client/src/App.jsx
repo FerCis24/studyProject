@@ -8,15 +8,15 @@ import { ProductPage } from "./components/pages/ProductPage";
 
 function App() {
   return (
-    <>
-    <Navbar/>
-    <Routes> {/* renderizado condicional*/}
-      <Route path="/inicio" element={<Home />} />
-      <Route path="/tienda" element={<ListProduct />} />
-      <Route path="/producto" element={<ProductPage />} />
-      <Route path="/contacto" element={<Contact />} />
-    </Routes>
-    </>
+    <Navbar>
+      <Routes>
+        {/* renderizado condicional*/}
+        <Route path="/inicio" element={<Home />} />
+        <Route path="/tienda" element={<ListProduct />} />
+        <Route path="/producto" element={<ProductPage />} />
+        <Route path="/contacto" element={<Contact />} />
+      </Routes>
+    </Navbar>
   );
 }
 
