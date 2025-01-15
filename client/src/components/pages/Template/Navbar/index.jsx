@@ -10,7 +10,11 @@ export const Navbar = ({ children }) => {
       <Header>
         {/*mi header con el menú */}
         <div className="logo" />
-        <Menu theme="" dark mode="horizontal" defaultSelectedKeys={["1"]}>
+        <Menu 
+          theme="dark" 
+          mode="horizontal" 
+          defaultSelectedKeys={["1"]}
+        >
           <Menu.Item key="1">
             <Link to="/">Inicio</Link>
           </Menu.Item>
@@ -18,6 +22,12 @@ export const Navbar = ({ children }) => {
             <Link to="/tienda">Tienda</Link>
           </Menu.Item>
           <Menu.Item key="3">
+            <Link to="/login">Login</Link>
+          </Menu.Item>
+          <Menu.Item key="4">
+            <Link to="/carrito">Carrito</Link>
+          </Menu.Item>
+          <Menu.Item key="5">
             <Link to="/contacto">Contacto</Link>
           </Menu.Item>
         </Menu>

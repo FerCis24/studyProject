@@ -1,4 +1,16 @@
 //VER CLASES 30 (middleware login) 31 (session(back)/cookies(front))
+const userLogin = (req, res) => {
+  const { user, password } = req.body;
+
+  if (user === db_Users.user && password === db_Users.password) {
+    req.session.db_Users = logedUser;
+    console.log(req.session.logedUser);
+    res.json(req.session.logedUser);
+  } else {
+    res.json({ status: "failure", mesagge: "Credenciales incorrectas" });
+  }
+};
+
 const isAutenticated = (req, res, next) => {
   console.log(req.session.usuario);
   if (req.session.usuario) {
@@ -17,6 +29,7 @@ const isAdmin = (req, res, next) => {
 }
 
 module.exports = {
+  userLogin,
   isAutenticated,
   isAdmin,
 }
