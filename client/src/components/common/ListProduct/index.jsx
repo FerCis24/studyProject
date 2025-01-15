@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CardProduct } from "../CardProduct";
 import ErrorBoundary from "../../ErrorBoundary";
-//PARA HACERLO CON "antd", VER → CLASE 51 → h:m = 1:15
+
 export const ListProduct = () => {
   const [productos, setProductos] = useState([]);
 
+  //BackEnd Conection
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://localhost:3000/productos/");
@@ -24,7 +25,7 @@ export const ListProduct = () => {
       <div>
         {Array.isArray(productos) ? (
           productos.map((producto, index) => (
-            <CardProduct 
+            <CardProduct
               key={index}
               title={producto.title}
               image={producto.image}

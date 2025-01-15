@@ -1,16 +1,22 @@
-const conection = require("../db/db.js");
+//VER CLASES 30 (middleware login) 31 (session(back)/cookies(front))
+const isAutenticated = (req, res, next) => {
+  console.log(req.session.usuario);
+  if (req.session.usuario) {
+    return next()
+  }
+  res.status(403).JSON({ message: "Debes iniciar sesión" })
+}
 
-const getUsers = (req, res) => {
-  conection.query("SELECT * FROM usuarios", (err, rows, fields) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ status: "failure", message: err });
-    } else {
-      res.status(200).json(rows);
-    }
-  });
-};
+const isAdmin = (req, res, next) => {
+  if (!req.session.usuario) {
+    return res.status(403).JSON({ message: "Debes iniciar sesión" })
+  }
+  if (!req.session.usuario.role === "admin") {
+    return next()
+  }
+}
 
 module.exports = {
-    getUsers
-};
+  isAutenticated,
+  isAdmin,
+}

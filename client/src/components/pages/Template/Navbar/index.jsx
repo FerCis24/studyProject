@@ -12,7 +12,7 @@ export const Navbar = ({ children }) => {
         <div className="logo" />
         <Menu theme="" dark mode="horizontal" defaultSelectedKeys={["1"]}>
           <Menu.Item key="1">
-            <Link to="/inicio">Inicio</Link>
+            <Link to="/">Inicio</Link>
           </Menu.Item>
           <Menu.Item key="2">
             <Link to="/tienda">Tienda</Link>
