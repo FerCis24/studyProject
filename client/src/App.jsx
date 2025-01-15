@@ -8,6 +8,7 @@ import { CardViewProduct } from "./components/common/CardViewProduct";
 import { Login } from "./components/pages/Login";
 import { ShoppingCart } from "./components/pages/ShoppingCart"
 import { Contact } from "./components/pages/Contact";
+import { Register } from "./components/pages/Register";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/tienda/:id" element={<CardViewProduct />} />
         <Route path="/producto" element={<ProductPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/registro" element={<Register />} />
         <Route path="/carrito" element={<ShoppingCart />} />
         <Route path="/contacto" element={<Contact />} />
       </Routes>
