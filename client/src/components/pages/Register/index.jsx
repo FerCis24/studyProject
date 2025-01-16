@@ -16,32 +16,72 @@ const { Option } = Select;
 
 const residences = [
   {
-    value: 'zhejiang',
-    label: 'Zhejiang',
+    value: 'arg',
+    label: 'Argentina',
     children: [
       {
-        value: 'hangzhou',
-        label: 'Hangzhou',
+        value: 'cba',
+        label: 'Córdoba',
         children: [
           {
-            value: 'xihu',
-            label: 'West Lake',
+            value: 'cba-cap',
+            label: 'Córdoba Capital',
+          },
+          {
+            value: 'r4',
+            label: 'Rio Cuarto',
+          },
+          {
+            value: 'vm',
+            label: 'Villa María',
+          },
+          {
+            value: 'sf',
+            label: 'San Francisco',
+          },
+        ],
+      },
+      {
+        value: 'sfe-p',
+        label: 'Santa Fe',
+        children: [
+          {
+            value: 'sfe',
+            label: 'Santa Fe',
+          },
+          {
+            value: 'rosario',
+            label: 'Rosario',
+          },
+          {
+            value: 'rafaela',
+            label: 'Rafaela',
           },
         ],
       },
     ],
   },
   {
-    value: 'jiangsu',
-    label: 'Jiangsu',
+    value: 'ur',
+    label: 'Uruguay',
     children: [
       {
-        value: 'nanjing',
-        label: 'Nanjing',
+        value: 'mvd-d',
+        label: 'Montevideo',
         children: [
           {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
+            value: 'mvd',
+            label: 'Montevideo',
+          },
+        ],
+      },
+      {
+        value: 'maldonado',
+        label: 'Maldonado',
+        children: [
+          {
+            value: 'ptaDelEste',
+            label: 'Punta del Este',
           },
         ],
       },
@@ -98,18 +138,6 @@ export const Register = () => {
       </Select>
     </Form.Item>
   );
-  const suffixSelector = (
-    <Form.Item name="suffix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="USD">$</Option>
-        <Option value="CNY">¥</Option>
-      </Select>
-    </Form.Item>
-  );
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
   const onWebsiteChange = (value) => {
     if (!value) {
@@ -129,7 +157,7 @@ export const Register = () => {
       name="register"
       onFinish={onFinish}
       initialValues={{
-        residence: ['zhejiang', 'hangzhou', 'xihu'],
+        residence: ['arg', 'cba', 'cba-cap'],
         prefix: '54',
       }}
       style={{
@@ -143,11 +171,11 @@ export const Register = () => {
         rules={[
           {
             type: 'email',
-            message: 'The input is not valid E-mail!',
+            message: 'El E-mail ingresado no es válido!',
           },
           {
             required: true,
-            message: 'Please input your E-mail!',
+            message: 'Por favor, ingresa tu e-mail!',
           },
         ]}
       >
@@ -160,7 +188,7 @@ export const Register = () => {
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: 'Por favor, ingresa tu contraseña!',
           },
         ]}
         hasFeedback
@@ -176,14 +204,14 @@ export const Register = () => {
         rules={[
           {
             required: true,
-            message: 'Please confirm your password!',
+            message: 'Por favor, confirma tu contraseña',
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
               if (!value || getFieldValue('password') === value) {
                 return Promise.resolve();
               }
-              return Promise.reject(new Error('The new password that you entered do not match!'));
+              return Promise.reject(new Error('La nueva contraseña que ingresaste no coincide!'));
             },
           }),
         ]}
@@ -194,11 +222,11 @@ export const Register = () => {
       <Form.Item
         name="userName"
         label="Nombre de Usuario"
-        tooltip="What do you want others to call you?"
+        tooltip="Que nombre de usuario quieres usar?"
         rules={[
           {
             required: true,
-            message: 'Please input your nickname!',
+            message: 'Por favor, ingresa tu nombre de usuario!',
             whitespace: true,
           },
         ]}
@@ -213,7 +241,7 @@ export const Register = () => {
           {
             type: 'array',
             required: true,
-            message: 'Please select your habitual residence!',
+            message: 'Por fabor, ingresa tu domicilio!',
           },
         ]}
       >
@@ -226,7 +254,7 @@ export const Register = () => {
         rules={[
           {
             required: true,
-            message: 'Please input your phone number!',
+            message: 'Por favor, ingresa tu número de teléfono!',
           },
         ]}
       >
@@ -244,7 +272,7 @@ export const Register = () => {
         rules={[
           {
             required: true,
-            message: 'Please input Intro',
+            message: 'Aquí puedes ingresar datos adicionales',
           },
         ]}
       >
@@ -277,7 +305,7 @@ export const Register = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Please input the captcha you got!',
+                  message: 'Por favor, ingresa el captcha que obtuviste!',
                 },
               ]}
             >
@@ -285,7 +313,7 @@ export const Register = () => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Button>Get captcha</Button>
+            <Button>Obtener captcha</Button>
           </Col>
         </Row>
       </Form.Item>

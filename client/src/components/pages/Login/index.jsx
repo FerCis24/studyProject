@@ -31,7 +31,7 @@ export const Login = () => {
       onFinish={onFinish}
     >
       <Form.Item
-        name="username"
+        name="userName"
         rules={[
           {
             required: true,

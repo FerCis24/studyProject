@@ -20,7 +20,7 @@ export const CardProduct = ({ title, price, description, category, image }) => {
           <span>Agregar al carrito</span>
         </button>
         <button className="icon-with-text">
-          <EyeOutlined style={{ fontSize: "24px" }} />
+          <EyeOutlined style={{ fontSize: "24px"}} />
           <span>Ver</span>
         </button>
       </div>

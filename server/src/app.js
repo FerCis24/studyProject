@@ -29,7 +29,7 @@ app.use(
 
 //CONFIGURACIÓN DE SESSION 
 app.use(session({
-    secret: 'my-secret-key',//DESPUES LA CAMBIO
+    secret: 'asd',//DESPUES LA CAMBIO
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }//CREO QUE DEBERIA SER true si uso HTTPS
