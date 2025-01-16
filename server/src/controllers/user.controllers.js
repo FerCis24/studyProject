@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 
 const userLogin = (req, res, next) => {
   const { userName, password } = req.body;
+  console.log(req.body);
   const query = "SELECT * FROM usuarios WHERE userName = ?";
 
   connection.query(query, [userName], (err, rows, fields) => {
@@ -11,33 +12,42 @@ const userLogin = (req, res, next) => {
       console.error(err);
       return res.status(500).json({ status: "failure", message: err.message });
     }
-
     if (rows.length === 0) {
       return res
-        .status(401)
-        .json({ status: "failure", message: "Credenciales incorrectas" });
+      .status(401)
+      .json({ status: "failure", message: "Credenciales incorrectas" });
     }
+    console.log(rows)
 
     const user = rows[0];
 
-    bcrypt.compare(password, user.password, (err, isMatch) => {
-      if (err) {
-        console.error(err);
-        return res
-          .status(500)
-          .json({ status: "failure", message: err.message });
-      }
+    // bcrypt.compare(password, user.password, (err, isMatch) => {
+    //   if (err) {
+    //     console.error(err);
+    //     return res
+    //       .status(500)
+    //       .json({ status: "failure", message: err.message });
+    //   }
 
-      if (!isMatch) {
-        return res
-          .status(401)
-          .json({ status: "failure", message: "Credenciales incorrectas" });
-      }
+    //   if (!isMatch) {
+    //     return res
+    //       .status(401)
+    //       .json({ status: "failure", message: "Credenciales incorrectas" });
+    //   }
 
-      // Si las credenciales son correctas, continúo con el siguiente middleware
+    //   // Si las credenciales son correctas, continúo con el siguiente middleware
+    //   req.session.usuario = user;
+    //   next();
+    // });
+    if (user.password === password) {
       req.session.usuario = user;
-      next();
-    });
+      res.status(200).json({ status:"satisfies", message: "Session iniciada"  })
+      
+    } else {
+      res.status(401).json({ status:"failure", message: "contraseña incorrecta"  })
+
+  }
+
   });
 };
 
