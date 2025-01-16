@@ -1,16 +1,38 @@
 //VER CLASES 30 (middleware login) 31 (session(back)/cookies(front))
 const connection = require("../db/db.js");
+const bcrypt = require('bcrypt');
 
-const userLogin = (req, res) => {
-  const { user, password } = req.body;
+const userLogin = (req, res, next) => {
+  const { userName, password } = req.body;
+  const query = "SELECT * FROM usuarios WHERE userName = ?";
 
-  if (user === db_Users.user && password === db_Users.password) {
-    req.session.db_Users = logedUser;
-    console.log(req.session.logedUser);
-    res.json(req.session.logedUser);
-  } else {
-    res.json({ status: "failure", mesagge: "Credenciales incorrectas" });
-  }
+  connection.query(query, [userName], (err, rows, fields) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ status: "failure", message: err.message });
+    }
+
+    if (rows.length === 0) {
+      return res.status(401).json({ status: "failure", message: "Credenciales incorrectas" });
+    }
+
+    const user = rows[0];
+
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ status: "failure", message: err.message });
+      }
+
+      if (!isMatch) {
+        return res.status(401).json({ status: "failure", message: "Credenciales incorrectas" });
+      }
+
+      // Si las credenciales son correctas, continúo con el siguiente middleware
+      req.session.usuario = user;
+      next();
+    });
+  });
 };
 
 const isAutenticated = (req, res, next) => {

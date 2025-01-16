@@ -3,7 +3,7 @@ const productRoutes = require("./routes/product.routes.js");
 const userRoutes = require("./routes/user.routes.js");
 const cors = require("cors");
 const session = require("express-session");
-const sessionDuration = 1000 * 60 * 60 * 24;
+const sessionDuration = 1000 * 60 * 60 * 24;//ESTA DURACION EN SEGUNDOS LO USE EN EL EJERCICIO DE CLASE
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -24,15 +24,15 @@ app.use(express.json());
 app.use(
     express.urlencoded({
       extended: true,
-    })
+    })//PARSEANDO DATOS DE FORMULARIOS URL-ENCODED
   );
 
 //CONFIGURACIÓN DE SESSION 
 app.use(session({
-    secret: 'my-secret-key',
+    secret: 'my-secret-key',//DESPUES LA CAMBIO
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { secure: false }//CREO QUE DEBERIA SER true si uso HTTPS
 }));
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

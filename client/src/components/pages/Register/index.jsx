@@ -93,8 +93,8 @@ export const Register = () => {
           width: 70,
         }}
       >
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
+        <Option value="54">+54</Option>
+        <Option value="598">+598</Option>
       </Select>
     </Form.Item>
   );
@@ -130,7 +130,7 @@ export const Register = () => {
       onFinish={onFinish}
       initialValues={{
         residence: ['zhejiang', 'hangzhou', 'xihu'],
-        prefix: '86',
+        prefix: '54',
       }}
       style={{
         maxWidth: 600,
@@ -156,7 +156,7 @@ export const Register = () => {
 
       <Form.Item
         name="password"
-        label="Password"
+        label="Contraseña"
         rules={[
           {
             required: true,
@@ -170,7 +170,7 @@ export const Register = () => {
 
       <Form.Item
         name="confirm"
-        label="Confirm Password"
+        label="Confirmar Contraseña"
         dependencies={['password']}
         hasFeedback
         rules={[
@@ -192,8 +192,8 @@ export const Register = () => {
       </Form.Item>
 
       <Form.Item
-        name="nickname"
-        label="Nickname"
+        name="userName"
+        label="Nombre de Usuario"
         tooltip="What do you want others to call you?"
         rules={[
           {
@@ -208,7 +208,7 @@ export const Register = () => {
 
       <Form.Item
         name="residence"
-        label="Habitual Residence"
+        label="Dirección"
         rules={[
           {
             type: 'array',
@@ -222,7 +222,7 @@ export const Register = () => {
 
       <Form.Item
         name="phone"
-        label="Phone Number"
+        label="Número de teléfono"
         rules={[
           {
             required: true,
@@ -239,41 +239,8 @@ export const Register = () => {
       </Form.Item>
 
       <Form.Item
-        name="donation"
-        label="Donation"
-        rules={[
-          {
-            required: true,
-            message: 'Please input donation amount!',
-          },
-        ]}
-      >
-        <InputNumber
-          addonAfter={suffixSelector}
-          style={{
-            width: '100%',
-          }}
-        />
-      </Form.Item>
-
-      <Form.Item
-        name="website"
-        label="Website"
-        rules={[
-          {
-            required: true,
-            message: 'Please input website!',
-          },
-        ]}
-      >
-        <AutoComplete options={websiteOptions} onChange={onWebsiteChange} placeholder="website">
-          <Input />
-        </AutoComplete>
-      </Form.Item>
-
-      <Form.Item
         name="intro"
-        label="Intro"
+        label="Datos adicionales"
         rules={[
           {
             required: true,
@@ -286,22 +253,22 @@ export const Register = () => {
 
       <Form.Item
         name="gender"
-        label="Gender"
+        label="Género"
         rules={[
           {
             required: true,
-            message: 'Please select gender!',
+            message: 'Selecciona un género',
           },
         ]}
       >
-        <Select placeholder="select your gender">
-          <Option value="male">Male</Option>
-          <Option value="female">Female</Option>
-          <Option value="other">Other</Option>
+        <Select placeholder="selecciona tu género">
+          <Option value="male">Masculino</Option>
+          <Option value="female">Femenino</Option>
+          <Option value="other">Otro</Option>
         </Select>
       </Form.Item>
 
-      <Form.Item label="Captcha" extra="We must make sure that your are a human.">
+      <Form.Item label="Captcha" extra="Debemos verificar que sos un humano.">
         <Row gutter={8}>
           <Col span={12}>
             <Form.Item
@@ -329,18 +296,18 @@ export const Register = () => {
         rules={[
           {
             validator: (_, value) =>
-              value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
+              value ? Promise.resolve() : Promise.reject(new Error('Debes aceptar los términos y condiciones')),
           },
         ]}
         {...tailFormItemLayout}
       >
         <Checkbox>
-          I have read the <a href="">agreement</a>
+          He leído los <a href="">términos y condiciones</a>
         </Checkbox>
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
-          Register
+          Registrarse
         </Button>
       </Form.Item>
     </Form>

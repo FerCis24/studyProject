@@ -1,12 +1,24 @@
 import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Flex } from 'antd';
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
-	const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+  const navigate = useNavigate();
+
+	const onFinish = async (values) => {
+    try {
+      const response = await axios.post('http://localhost:3000/usuarios/login', values)
+      console.log('Received values of form: ', response.data);
+      // Redirigiendo al usuario a la página de inicio o a otra página si el login exitoso
+      navigate('/carrito') //VER A DÓNDE LO ENVÍO
+    } catch (error) {
+      console.error('Error logging in:', error.response.data);
+      //TENGO QUE VER COMO MANEJO ESTE ERROR
+    }
   };
+
   return (
     <Form
       name="login"
@@ -43,9 +55,9 @@ export const Login = () => {
       <Form.Item>
         <Flex justify="space-between" align="center">
           <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox>Recordarme</Checkbox>
           </Form.Item>
-          <a href="">Forgot password</a>
+          <a href="">Recuperar contraseña</a>
         </Flex>
       </Form.Item>
 
@@ -53,7 +65,7 @@ export const Login = () => {
         <Button block type="primary" htmlType="submit">
           Log in
         </Button>
-        or <Link to="/registro">Register now!</Link>
+        ó <Link to="/registro">Registrarme ahora!</Link>
       </Form.Item>
     </Form>
   );
