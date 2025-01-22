@@ -6,7 +6,7 @@ const userLogin = (req, res, next) => {
   console.log(req.body);
   const query = "SELECT * FROM usuarios WHERE userName = ? LIMIT 1";
 
-  connection.query(query, [userName], (err, rows, fields) => {
+  connection.query(query, [email], (err, rows, fields) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ status: "failure", message: err.message });

@@ -2,7 +2,8 @@ const express = require("express");
 const productRouter = require("./routes/product.routes.js");
 const userRouter = require("./routes/user.routes.js");
 const authRouter = require("./routes/auth.routes.js");
-const ticketRouter = require("./routes/ticket.routes.js")
+const ticketRouter = require("./routes/ticket.routes.js");
+// const checkoutRouter = require("./routes/Cart.routes.js")
 const cors = require("cors");
 const session = require("express-session");
 const bodyParser = require("body-parser");
@@ -48,4 +49,5 @@ app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 app.use("/productos", productRouter);
 app.use("/usuarios", userRouter);
 app.use("/auth", authRouter);
-app.use("/tickets", ticketRouter)
+app.use("/tickets", ticketRouter);
+// app.use("/checkout", checkoutRouter)
