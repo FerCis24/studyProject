@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { Portada } from '../../common/Carousel/index.jsx'
 
 export const Home = () => {
-    return (
-        <div>
-            <h1>Bienvenido a la tienda</h1>
-        </div>
-    )
-}
+  return (
+    <Portada />
+  );
+};

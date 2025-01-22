@@ -1,7 +1,7 @@
 import React from 'react'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 
-export const ShoppingCart = () => {
+export const Cart = () => {
     return (
         <div>
             <h1>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { CardProduct } from "../CardProduct";
-import ErrorBoundary from "../../ErrorBoundary";
+import { CardProduct } from "../../common/CardProduct/index.jsx";
+import ErrorBoundary from "../../ErrorBoundary/index.jsx";
 
-export const ListProduct = () => {
+export const Store = () => {
   const [productos, setProductos] = useState([]);
 
   //BackEnd Conection
@@ -22,7 +22,7 @@ export const ListProduct = () => {
 
   return (
     <ErrorBoundary>
-      <div>
+      <div className="container">
         {Array.isArray(productos) ? (
           productos.map((producto, index) => (
             <CardProduct
