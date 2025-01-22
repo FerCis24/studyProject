@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
-export const Checkout = () => {
+export const Cart = () => {
   const navigate = useNavigate();
 
   const handleCheckout = async () => {

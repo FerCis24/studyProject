@@ -13,6 +13,7 @@
       margin: 10px;
       padding: 5px;
       border-radius: 5px;
+      border: grey;
       
       &:hover {
         cursor: pointer;
@@ -21,8 +22,8 @@
   }
 .icons {
   display: flex;
-  flex-direction: row;
-  .icon-with-text {
-    margin-inline: 10px;
-  }
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }

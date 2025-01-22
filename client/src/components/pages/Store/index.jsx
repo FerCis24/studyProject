@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CardProduct } from "../../common/CardProduct/index.jsx";
 import ErrorBoundary from "../../ErrorBoundary/index.jsx";
+import './style.css'
 
 export const Store = () => {
   const [productos, setProductos] = useState([]);

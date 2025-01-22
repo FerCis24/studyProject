@@ -4,36 +4,40 @@ import { Card } from "antd";
 const { Meta } = Card;
 // npm install @ant-design/icons --save
 import { ShoppingCartOutlined, EyeOutlined } from "@ant-design/icons";
+import './CardProduct.module.css'
 
 export const CardProduct = ({ title, price, description, category, image }) => {
   return (
     <Card
-    hoverable
-    style={{
-      width: 350,
-      margin: "25px",
-      justifyContent: "center",
-    }}
-    cover={<img alt={title} src={image} />}>
-        <Meta title={title} description={description} />
-        <div>
-          <span>
-            <b>$ {price}</b>
-          </span>
-          <div className="icons">
-            <button className="icon-with-text">
-              <ShoppingCartOutlined
-                style={{ fontSize: "24px", marginRight: "10px", color: "grey" }}
-                />
-              <span>Agregar al carrito</span>
-            </button>
-            <button className="icon-with-text">
-              <EyeOutlined style={{ fontSize: "24px", color: "grey" }} />
-              <span>Ver</span>
-            </button>
-          </div>
+      hoverable
+      style={{
+        width: 350,
+        margin: "25px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+      cover={<img alt={title} src={image} />}>
+      <Meta title={title} description={description} />
+      <div>
+        <span>
+          <b>$ {price}</b>
+        </span>
+        <div className="icons">
+          <button className="icon-with-text">
+            <ShoppingCartOutlined
+              style={{ fontSize: "24px", color: "grey" }}
+            />
+            <span>Agregar al carrito</span>
+          </button>
+          <button className="icon-with-text">
+            <EyeOutlined style={{ fontSize: "24px", color: "grey" }} />
+            <span>Ver</span>
+          </button>
         </div>
-      </Card>
+      </div>
+    </Card>
   );
 };
 
