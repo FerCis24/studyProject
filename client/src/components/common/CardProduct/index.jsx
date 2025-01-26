@@ -1,12 +1,19 @@
-import React from "react";
-// npm install @antd
-import { Card } from "antd";
-const { Meta } = Card;
-// npm install @ant-design/icons --save
-import { ShoppingCartOutlined, EyeOutlined } from "@ant-design/icons";
-import './CardProduct.module.css'
+import React, { useContext } from "react";
+import { Card } from "antd"; // npm install @antd
+import { ShoppingCartOutlined, EyeOutlined } from "@ant-design/icons"; // npm install @ant-design/icons --save
+import { CartContext } from "../../../context/Cart.Contex.jsx";
+import "./CardProduct.module.css";
 
-export const CardProduct = ({ title, price, description, category, image }) => {
+const { Meta } = Card;
+
+export const CardProduct = ({ id, title, description, price, image }) => {
+  const { addToCart } = useContext(CartContext);
+
+  const handleAddToCart = () => {
+    const product = { id, title, description, price, image };
+    addToCart(product);
+  };
+
   return (
     <Card
       hoverable
@@ -18,20 +25,45 @@ export const CardProduct = ({ title, price, description, category, image }) => {
         alignItems: "center",
         justifyContent: "center",
       }}
-      cover={<img alt={title} src={image} />}>
-      <Meta title={title} description={description} />
-      <div>
+      cover={
+        <img
+          alt={title}
+          src={image}
+          style={{ width: "100%", height: "auto" }}
+        />
+      }>
+      <Meta
+        title={title}
+        description={description}
+        style={{ textAlign: "center" }}
+      />
+      <div style={{ textAlign: "center", marginTop: "10px" }}>
         <span>
           <b>$ {price}</b>
         </span>
-        <div className="icons">
-          <button className="icon-with-text">
+        <div
+          className="icons"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "10px",
+          }}>
+          <button
+            className="icon-with-text"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: "10px",
+            }}>
             <ShoppingCartOutlined
-              style={{ fontSize: "24px", color: "grey" }}
+              style={{ fontSize: "24px", marginInline: "10px", color: "grey" }}
             />
             <span>Agregar al carrito</span>
           </button>
-          <button className="icon-with-text">
+          <button 
+            className="icon-with-text"
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <EyeOutlined style={{ fontSize: "24px", color: "grey" }} />
             <span>Ver</span>
           </button>

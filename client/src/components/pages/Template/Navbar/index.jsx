@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { Layout, Menu, Drawer } from "antd";
 import { Link } from "react-router-dom";
-import { Flex, Layout, Menu, Drawer, Button } from "antd";
-import { ShoppingCartIcon } from "../../../common/Icons/Index";
+import { ShoppingCartOutlined } from "@ant-design/icons";
+// import { ShoppingCartIcon } from "../../../common/Icons/Index";//o uno o el otro
+import { CartContext } from "../../../../context/Cart.Contex.jsx";
+// import './style.css'
 
-const { Header, Sider, Content, Footer } = Layout;
+const { Header, Content, Footer } = Layout;
 
 export const Navbar = ({ children }) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false);// con este hook guardo el estado visible, una función que me permite modificar ese estado y un estado por defecto
+  const { cartItems } = useContext(CartContext);
 
   const showDrawer = () => {
     setVisible(true);
@@ -19,7 +23,6 @@ export const Navbar = ({ children }) => {
   return (
     <Layout>
       <Header>
-        {/*mi header con el menú */}
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
           <Menu.Item key="1">
@@ -35,8 +38,6 @@ export const Navbar = ({ children }) => {
             <Link to="/contacto">Contacto</Link>
           </Menu.Item>
           <Menu.Item key="5">
-            {/* <Link to="/carrito"><ShoppingCartIcon /></Link> */}
-
             <span
               style={{
                 cursor: "pointer",
@@ -45,7 +46,9 @@ export const Navbar = ({ children }) => {
               }}
               onClick={showDrawer}
             >
-              <ShoppingCartIcon />
+              <ShoppingCartOutlined
+                style={{ fontSize: "24px", marginRight: "8px" }}
+              />
             </span>
             <Drawer
               title="Carrito de Compras"
@@ -53,10 +56,16 @@ export const Navbar = ({ children }) => {
               onClose={onClose}
               visible={visible}
             >
-              {/* Contenido del carrito */}
-              <p>Producto 1</p>
-              <p>Producto 2</p>
-              <p>Producto 3</p>
+              {cartItems.lenght > 0 ? (
+                cartItems.map((item, index) => (
+                  <div key={index}>
+                    <p>{item.title}</p>
+                    <p>{item.price}</p>
+                  </div>
+                ))
+              ) : (
+                <p>El carrito está vacío</p>
+              )}
             </Drawer>
           </Menu.Item>
         </Menu>

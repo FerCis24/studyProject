@@ -1,35 +1,56 @@
-import React from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import React, { useState } from 'react';
+import { Button, Drawer, Radio, Space } from 'antd';
+
 
 export const Cart = () => {
-  const navigate = useNavigate();
-
-  const handleCheckout = async () => {
-    try {
-      const responde = await axios.post("http://localhost:3000/checkout");
-      console.log(Response.data);
-      //REDIRIGIENDO A LA PÁGINA DE CONFIRMACIÓN DE COMPRA
-      navigate("/confirmation");
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
-        //REDIRIGIENDO A LA PÁGINA DE LOGIN SI NO ESTÁ LOGUEADO
-        navigate("/login");
-      } else {
-        console.error("Error al finalizar la compra:", error);
-      }
-    }
+  const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState('right');
+  
+  const showDrawer = () => {
+    setOpen(true);
   };
-
-	return (
-		<div>
-			<h1>
-				<ShoppingCartOutlined />
-				Checkout
-			</h1>
-			<button onClick={handleCheckout}>Finalizar Compra</button>
-		</div>
-	);
+  const onChange = (e) => {
+    setPlacement(e.target.value);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
+  return (
+    <>
+      <Space>
+        <Radio.Group value={placement} onChange={onChange}>
+          <Radio value="top">top</Radio>
+          <Radio value="right">right</Radio>
+          <Radio value="bottom">bottom</Radio>
+          <Radio value="left">left</Radio>
+        </Radio.Group>
+        <Button type="primary" onClick={showDrawer}>
+          Open
+        </Button>
+      </Space>
+      <Drawer
+        title="Drawer with extra actions"
+        placement={placement}
+        width={500}
+        onClose={onClose}
+        open={open}
+        extra={
+          <Space>
+            <Button onClick={onClose}>Cancel</Button>
+            <Button type="primary" onClick={onClose}>
+              OK
+            </Button>
+          </Space>
+        }
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
+    </>
+  );
 };
+
+
+
 

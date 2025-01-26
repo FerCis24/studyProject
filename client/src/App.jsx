@@ -6,24 +6,26 @@ import { Store } from "./components/pages/Store";
 import { ProductPage } from "./components/pages/ProductPage";
 import { Login } from "./components/pages/Login";
 import { Register } from "./components/pages/Register";
-import { Cart } from "./components/pages/Cart"
-import { Cart2 } from "./components/pages/Cart2"
+import { Cart } from "./components/pages/Cart";
 import { Contact } from "./components/pages/Contact";
+import { CartProvider } from "./context/Cart.Contex";
 
 function App() {
   return (
-    <Navbar>
-      <Routes>
-        {/* renderizado condicional*/}
-        <Route path="/" element={<Home />} />
-        <Route path="/tienda" element={<Store />} />
-        <Route path="/tienda/:id" element={<ProductPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registro" element={<Register />} />
-        <Route path="/carrito" element={<Cart2 />} />
-        <Route path="/contacto" element={<Contact />} />
-      </Routes>
-    </Navbar>
+    <CartProvider>
+      <Navbar>
+        <Routes>
+          {/* renderizado condicional*/}
+          <Route path="/" element={<Home />} />
+          <Route path="/tienda" element={<Store />} />
+          <Route path="/tienda/:id" element={<ProductPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Register />} />
+          <Route path="/carrito" element={<Cart />} />
+          <Route path="/contacto" element={<Contact />} />
+        </Routes>
+      </Navbar>
+    </CartProvider>
   );
 }
 
