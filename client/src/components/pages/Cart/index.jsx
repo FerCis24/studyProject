@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Drawer, Radio, Space } from 'antd';
+import { CartContext } from '../../../context/Cart.Contex.jsx';
+import { useContext } from 'react';
 
 
 export const Cart = () => {
+  const { cartItems } = useContext(CartContext);
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState('right');
   
@@ -43,14 +46,17 @@ export const Cart = () => {
           </Space>
         }
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        {cartItems.map((item, index) => (
+          <div key={index}>
+            <p>{item.title}</p>
+            <p>{item.description}</p>
+            <p>{item.price}</p>
+          </div>
+        ))}
       </Drawer>
     </>
   );
 };
-
 
 
 

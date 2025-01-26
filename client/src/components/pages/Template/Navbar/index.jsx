@@ -47,7 +47,7 @@ export const Navbar = ({ children }) => {
               onClick={showDrawer}
             >
               <ShoppingCartOutlined
-                style={{ fontSize: "24px", marginRight: "8px" }}
+                style={{ fontSize: "24px", marginLeft: "8px" }}
               />
             </span>
             <Drawer
@@ -56,7 +56,7 @@ export const Navbar = ({ children }) => {
               onClose={onClose}
               visible={visible}
             >
-              {cartItems.lenght > 0 ? (
+              {cartItems.length > 0 ? (
                 cartItems.map((item, index) => (
                   <div key={index}>
                     <p>{item.title}</p>
