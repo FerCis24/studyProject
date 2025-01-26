@@ -1,38 +1,16 @@
-import React, { useState } from 'react';
-import { Button, Drawer, Radio, Space } from 'antd';
-import { CartContext } from '../../../context/Cart.Contex.jsx';
-import { useContext } from 'react';
+import React, { useContext } from "react";
+import { Drawer, Space, Button } from "antd";
+import { CartContext } from "../../../context/Cart.Contex.jsx";
 
-
-export const Cart = () => {
+export const Cart = ({ open, onClose }) => {
   const { cartItems } = useContext(CartContext);
-  const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState('right');
-  
-  const showDrawer = () => {
-    setOpen(true);
-  };
-  const onChange = (e) => {
-    setPlacement(e.target.value);
-  };
-  const onClose = () => {
-    setOpen(false);
-  };
+  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+  const placement = 'right';
+
   return (
     <>
-      <Space>
-        <Radio.Group value={placement} onChange={onChange}>
-          <Radio value="top">top</Radio>
-          <Radio value="right">right</Radio>
-          <Radio value="bottom">bottom</Radio>
-          <Radio value="left">left</Radio>
-        </Radio.Group>
-        <Button type="primary" onClick={showDrawer}>
-          Open
-        </Button>
-      </Space>
       <Drawer
-        title="Drawer with extra actions"
+        title="Carrito de Compras"
         placement={placement}
         width={500}
         onClose={onClose}
@@ -44,19 +22,23 @@ export const Cart = () => {
               OK
             </Button>
           </Space>
-        }
-      >
-        {cartItems.map((item, index) => (
-          <div key={index}>
-            <p>{item.title}</p>
-            <p>{item.description}</p>
-            <p>{item.price}</p>
-          </div>
-        ))}
+        }>
+        {cartItems.length > 0 ? (
+          <>
+            {cartItems.map((item, index) => (
+              <div key={index}>
+                <p>{item.title}</p>
+                <p>{item.price}</p>
+              </div>
+            ))}
+            <div>
+              <h3>Total: ${totalPrice.toFixed(2)}</h3>
+            </div>
+          </>
+        ) : (
+          <p>El carrito está vacío</p>
+        )}
       </Drawer>
     </>
   );
 };
-
-
-
